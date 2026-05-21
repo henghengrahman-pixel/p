@@ -2,45 +2,195 @@
 <html lang="id">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-  <title><%= settings.pageTitle || settings.siteName || 'PROMOSI' %></title>
-  <meta name="description" content="Promo terbaru <%= settings.siteName || 'RUPIAHTOTO' %>">
-  <link rel="stylesheet" href="/assets/css/site.css">
+
+  <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
+  >
+
+  <title>
+    <%= settings.pageTitle || settings.siteName || 'PROMOSI' %>
+  </title>
+
+  <meta
+    name="description"
+    content="Promo terbaru <%= settings.siteName || 'RUPIAHTOTO' %>"
+  >
+
+  <link
+    rel="stylesheet"
+    href="/assets/css/site.css"
+  >
 </head>
+
 <body style='--bg:url("<%= settings.backgroundUrl || "" %>")'>
-  <% if (settings.particles) { %><div class="particles" aria-hidden="true"></div><% } %>
+
+  <% if (settings.particles) { %>
+    <div
+      class="particles"
+      aria-hidden="true"
+    ></div>
+  <% } %>
+
   <main class="site-shell <%= settings.goldFrame ? 'gold-frame' : '' %>">
+
+    <!-- HEADER -->
     <header class="hero-head">
+
       <% if (settings.headerImageUrl) { %>
-        <img class="header-img" src="<%= settings.headerImageUrl %>" alt="<%= settings.siteName %>" loading="eager" onerror="this.style.display='none'">
+
+        <img
+          class="header-img"
+          src="<%= settings.headerImageUrl %>"
+          alt="<%= settings.siteName %>"
+          loading="eager"
+          onerror="this.style.display='none'"
+        >
+
       <% } else if (settings.logoUrl) { %>
-        <img class="logo-img" src="<%= settings.logoUrl %>" alt="<%= settings.siteName %>">
+
+        <img
+          class="logo-img"
+          src="<%= settings.logoUrl %>"
+          alt="<%= settings.siteName %>"
+        >
+
       <% } else { %>
-        <h1><%= settings.siteName || 'RUPIAHTOTO' %></h1>
+
+        <h1>
+          <%= settings.siteName || 'RUPIAHTOTO' %>
+        </h1>
+
       <% } %>
+
     </header>
-    <marquee class="ticker" direction="left" scrollamount="5"><%= settings.runningText || '' %></marquee>
+
+    <!-- TICKER -->
+    <marquee
+      class="ticker"
+      direction="left"
+      scrollamount="5"
+    >
+      <%= settings.runningText || '' %>
+    </marquee>
+
+    <!-- MENU -->
     <nav class="menu-bar">
+
       <% menus.forEach(function(menu){ %>
-        <a href="<%= menu.url || '#' %>" target="_blank" rel="noopener"><%= menu.label %></a>
+
+        <a
+          href="<%= menu.url || '#' %>"
+          target="_blank"
+          rel="noopener"
+        >
+          <%= menu.label %>
+        </a>
+
       <% }) %>
+
     </nav>
+
+    <!-- PROMO LIST -->
     <section class="promo-list">
-      <% promos.forEach(function(promo, idx){ %>
-        <article class="promo-card <%= promo.openDefault ? 'is-open' : '' %>">
-          <button class="promo-trigger" type="button" aria-expanded="<%= promo.openDefault ? 'true' : 'false' %>">
-            <img src="<%= promo.imageUrl %>" alt="<%= promo.title %>" loading="lazy" onerror="this.closest('.promo-card').classList.add('no-image')">
-            <span class="promo-title-fallback"><%= promo.title %></span>
+
+      <% promos.forEach(function(promo){ %>
+
+        <article
+          class="promo-card <%= promo.openDefault ? 'is-open' : '' %>"
+        >
+
+          <!-- IMAGE -->
+          <button
+            class="promo-trigger"
+            type="button"
+            aria-expanded="<%= promo.openDefault ? 'true' : 'false' %>"
+          >
+
+            <img
+              src="<%= promo.imageUrl %>"
+              alt="<%= promo.title %>"
+              loading="lazy"
+              onerror="this.closest('.promo-card').classList.add('no-image')"
+            >
+
+            <span class="promo-title-fallback">
+              <%= promo.title %>
+            </span>
+
           </button>
-          <div class="promo-content" style="<%= promo.openDefault ? 'display:block' : '' %>">
-            <% if (promo.linkUrl) { %><a class="claim-btn" href="<%= promo.linkUrl %>" target="_blank" rel="noopener">Klaim / Buka Link Promo</a><% } %>
-            <div class="content-body"><%- promo.description || '' %></div>
+
+          <!-- CONTENT -->
+          <div
+            class="promo-content"
+            style="<%= promo.openDefault ? 'display:block' : '' %>"
+          >
+
+            <% if (promo.linkUrl) { %>
+
+              <a
+                class="claim-btn"
+                href="<%= promo.linkUrl %>"
+                target="_blank"
+                rel="noopener"
+              >
+                Klaim / Buka Link Promo
+              </a>
+
+            <% } %>
+
+            <!-- FIX TEXT FORMAT -->
+            <div class="content-body">
+
+              <%
+                const formattedDescription =
+                  String(promo.description || '')
+
+                  .replace(/\r\n/g, '\n')
+
+                  .split('\n')
+
+                  .map(line => line.trim())
+
+                  .filter(line => line)
+
+                  .map(line => {
+
+                    if (
+                      line.includes('<img') ||
+                      line.includes('<table') ||
+                      line.includes('<iframe') ||
+                      line.includes('<video')
+                    ) {
+                      return line;
+                    }
+
+                    return `<p>${line}</p>`;
+                  })
+
+                  .join('');
+              %>
+
+              <%- formattedDescription %>
+
+            </div>
+
           </div>
+
         </article>
+
       <% }) %>
+
     </section>
-    <footer class="footer"><%= settings.footerText || '' %></footer>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <%= settings.footerText || '' %>
+    </footer>
+
   </main>
+
   <script src="/assets/js/site.js"></script>
+
 </body>
 </html>
