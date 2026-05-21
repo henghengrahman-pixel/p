@@ -1,0 +1,23 @@
+<%- include('../partials/admin-head', { title }) %>
+<div class="admin-shell">
+  <%- include('../partials/admin-nav') %>
+  <main class="admin-main">
+    <%- include('../partials/flash') %>
+    <div class="page-head"><div><span>PENGATURAN</span><h1>Logo, Header, Background</h1></div></div>
+    <form class="admin-card form-grid" method="post" action="<%= adminPath %>/settings" enctype="multipart/form-data">
+      <label>Nama Situs<input name="siteName" value="<%= settings.siteName || '' %>"></label>
+      <label>Judul Browser<input name="pageTitle" value="<%= settings.pageTitle || '' %>"></label>
+      <label>Logo URL<input name="logoUrl" value="<%= settings.logoUrl || '' %>"></label>
+      <label>Upload Logo<input type="file" name="logoFile" accept="image/*"></label>
+      <label>Header Image URL<input name="headerImageUrl" value="<%= settings.headerImageUrl || '' %>"></label>
+      <label>Upload Header<input type="file" name="headerFile" accept="image/*"></label>
+      <label>Background URL<input name="backgroundUrl" value="<%= settings.backgroundUrl || '' %>"></label>
+      <label>Upload Background<input type="file" name="backgroundFile" accept="image/*"></label>
+      <label class="full">Teks Berjalan<textarea name="runningText" rows="3"><%= settings.runningText || '' %></textarea></label>
+      <label class="full">Footer<textarea name="footerText" rows="2"><%= settings.footerText || '' %></textarea></label>
+      <div class="check-row full"><label><input type="checkbox" name="particles" <%= settings.particles ? 'checked' : '' %>> Efek partikel gold</label><label><input type="checkbox" name="goldFrame" <%= settings.goldFrame ? 'checked' : '' %>> Border emas tengah</label></div>
+      <button class="save-btn full">Simpan Pengaturan</button>
+    </form>
+  </main>
+</div>
+</body></html>

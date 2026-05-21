@@ -1,0 +1,23 @@
+<%- include('../partials/admin-head', { title }) %>
+<div class="admin-shell">
+  <%- include('../partials/admin-nav') %>
+  <main class="admin-main">
+    <%- include('../partials/flash') %>
+    <div class="page-head"><div><span>PROMO</span><h1><%= promo ? 'Edit Promo' : 'Tambah Promo' %></h1></div><a class="primary-link" href="<%= adminPath %>/promos">Kembali</a></div>
+    <form class="admin-card form-grid" method="post" action="<%= promo ? adminPath + '/promos/' + promo.id : adminPath + '/promos' %>" enctype="multipart/form-data">
+      <label>Judul Promo<input name="title" value="<%= promo ? promo.title : '' %>" required></label>
+      <label>Urutan<input name="sort" type="number" value="<%= promo ? promo.sort : 1 %>"></label>
+      <label class="full">Image URL<input name="imageUrl" value="<%= promo ? promo.imageUrl : '' %>" placeholder="https://...webp"></label>
+      <label>Upload Gambar Promo<input type="file" name="imageFile" accept="image/*"></label>
+      <label>Link Klaim / Detail<input name="linkUrl" value="<%= promo ? promo.linkUrl : '' %>" placeholder="https://..."></label>
+      <div class="check-row full"><label><input type="checkbox" name="active" <%= !promo || promo.active ? 'checked' : '' %>> Aktif</label><label><input type="checkbox" name="openDefault" <%= promo && promo.openDefault ? 'checked' : '' %>> Terbuka otomatis</label></div>
+      <label class="full">Keterangan Promo / Syarat Ketentuan
+        <textarea class="html-editor" name="description" rows="18" placeholder="Bisa isi teks HTML: <p>...</p><br>"><%= promo ? promo.description : '' %></textarea>
+      </label>
+      <div class="editor-help full">Tips: pakai &lt;p&gt; untuk paragraf, &lt;br&gt; untuk jarak, bullet boleh langsung pakai simbol •.</div>
+      <button class="save-btn full"><%= promo ? 'Simpan Promo' : 'Tambah Promo' %></button>
+    </form>
+  </main>
+</div>
+<script src="/assets/js/admin.js"></script>
+</body></html>

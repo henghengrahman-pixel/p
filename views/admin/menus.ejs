@@ -1,0 +1,21 @@
+<%- include('../partials/admin-head', { title }) %>
+<div class="admin-shell">
+  <%- include('../partials/admin-nav') %>
+  <main class="admin-main">
+    <%- include('../partials/flash') %>
+    <div class="page-head"><div><span>MENU</span><h1>Menu Tombol Atas</h1></div></div>
+    <section class="admin-card"><h2>Tambah Menu</h2>
+      <form class="inline-form" method="post" action="<%= adminPath %>/menus">
+        <input name="label" placeholder="Nama tombol" required><input name="url" placeholder="https://link..." required><input name="sort" type="number" value="1"><label class="mini-check"><input type="checkbox" name="active" checked> Aktif</label><button>Tambah</button>
+      </form>
+    </section>
+    <section class="admin-card"><h2>Daftar Menu</h2>
+      <% menus.forEach(function(m){ %>
+        <form class="list-form" method="post" action="<%= adminPath %>/menus/<%= m.id %>">
+          <input name="label" value="<%= m.label %>"><input name="url" value="<%= m.url %>"><input name="sort" type="number" value="<%= m.sort %>"><label><input type="checkbox" name="active" <%= m.active ? 'checked' : '' %>> Aktif</label><button>Simpan</button><button formaction="<%= adminPath %>/menus/<%= m.id %>/delete" class="danger" onclick="return confirm('Hapus menu ini?')">Hapus</button>
+        </form>
+      <% }) %>
+    </section>
+  </main>
+</div>
+</body></html>

@@ -1,0 +1,23 @@
+<%- include('../partials/admin-head', { title }) %>
+<div class="admin-shell">
+  <%- include('../partials/admin-nav') %>
+  <main class="admin-main">
+    <%- include('../partials/flash') %>
+    <div class="page-head"><div><span>DASHBOARD</span><h1>Ringkasan Website</h1></div><a class="primary-link" href="/" target="_blank">Preview</a></div>
+    <section class="stats-grid">
+      <div class="stat"><b><%= data.promos.length %></b><span>Total Promo</span></div>
+      <div class="stat"><b><%= data.promos.filter(p=>p.active).length %></b><span>Promo Aktif</span></div>
+      <div class="stat"><b><%= data.menus.length %></b><span>Menu Tombol</span></div>
+      <div class="stat"><b><%= data.settings.siteName %></b><span>Nama Situs</span></div>
+    </section>
+    <section class="admin-card">
+      <h2>Quick Action</h2>
+      <div class="quick-row">
+        <a href="<%= adminPath %>/settings">Edit Background / Header</a>
+        <a href="<%= adminPath %>/menus">Atur Tombol</a>
+        <a href="<%= adminPath %>/promos/new">Tambah Promo</a>
+      </div>
+    </section>
+  </main>
+</div>
+</body></html>

@@ -1,0 +1,19 @@
+<%- include('../partials/admin-head', { title }) %>
+<div class="admin-shell">
+  <%- include('../partials/admin-nav') %>
+  <main class="admin-main">
+    <%- include('../partials/flash') %>
+    <div class="page-head"><div><span>PROMO</span><h1>Kelola Promo</h1></div><a class="primary-link" href="<%= adminPath %>/promos/new">+ Tambah Promo</a></div>
+    <section class="admin-card promo-admin-list">
+      <% promos.forEach(function(p){ %>
+        <div class="promo-row">
+          <img src="<%= p.imageUrl %>" onerror="this.style.display='none'">
+          <div><b><%= p.title %></b><span>Urutan <%= p.sort %> • <%= p.active ? 'Aktif' : 'Nonaktif' %></span></div>
+          <a href="<%= adminPath %>/promos/<%= p.id %>/edit">Edit</a>
+          <form method="post" action="<%= adminPath %>/promos/<%= p.id %>/delete" onsubmit="return confirm('Hapus promo ini?')"><button class="danger">Hapus</button></form>
+        </div>
+      <% }) %>
+    </section>
+  </main>
+</div>
+</body></html>

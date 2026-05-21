@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <title><%= settings.pageTitle || settings.siteName || 'PROMOSI' %></title>
+  <meta name="description" content="Promo terbaru <%= settings.siteName || 'RUPIAHTOTO' %>">
+  <link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body style="--bg:url('<%= settings.backgroundUrl || '' %>')">
+  <% if (settings.particles) { %><div class="particles" aria-hidden="true"></div><% } %>
+  <main class="site-shell <%= settings.goldFrame ? 'gold-frame' : '' %>">
+    <header class="hero-head">
+      <% if (settings.headerImageUrl) { %>
+        <img class="header-img" src="<%= settings.headerImageUrl %>" alt="<%= settings.siteName %>" loading="eager" onerror="this.style.display='none'">
+      <% } else if (settings.logoUrl) { %>
+        <img class="logo-img" src="<%= settings.logoUrl %>" alt="<%= settings.siteName %>">
+      <% } else { %>
+        <h1><%= settings.siteName || 'RUPIAHTOTO' %></h1>
+      <% } %>
+    </header>
+    <marquee class="ticker" direction="left" scrollamount="5"><%= settings.runningText || '' %></marquee>
+    <nav class="menu-bar">
+      <% menus.forEach(function(menu){ %>
+        <a href="<%= menu.url || '#' %>" target="_blank" rel="noopener"><%= menu.label %></a>
+      <% }) %>
+    </nav>
+    <section class="promo-list">
+      <% promos.forEach(function(promo, idx){ %>
+        <article class="promo-card <%= promo.openDefault ? 'is-open' : '' %>">
+          <button class="promo-trigger" type="button" aria-expanded="<%= promo.openDefault ? 'true' : 'false' %>">
+            <img src="<%= promo.imageUrl %>" alt="<%= promo.title %>" loading="lazy" onerror="this.closest('.promo-card').classList.add('no-image')">
+            <span class="promo-title-fallback"><%= promo.title %></span>
+          </button>
+          <div class="promo-content" style="<%= promo.openDefault ? 'display:block' : '' %>">
+            <% if (promo.linkUrl) { %><a class="claim-btn" href="<%= promo.linkUrl %>" target="_blank" rel="noopener">Klaim / Buka Link Promo</a><% } %>
+            <div class="content-body"><%- promo.description || '' %></div>
+          </div>
+        </article>
+      <% }) %>
+    </section>
+    <footer class="footer"><%= settings.footerText || '' %></footer>
+  </main>
+  <script src="/assets/js/site.js"></script>
+</body>
+</html>
