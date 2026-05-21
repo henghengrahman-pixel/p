@@ -119,8 +119,8 @@ body:after{
   display:block;
   width:100%;
   height:auto;
-  max-height:128px;
-  object-fit:cover;
+  max-height:none;
+  object-fit:contain;
 }
 
 .logo-img{
@@ -405,10 +405,6 @@ body:after{
   .gold-frame{
     border-left:1px solid #a55f00;
     border-right:1px solid #a55f00;
-  }
-
-  .header-img{
-    max-height:105px;
   }
 
   .ticker{
