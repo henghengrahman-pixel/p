@@ -26,7 +26,7 @@ body{
   overflow-x:hidden;
 }
 
-/* OVERLAY GLOW */
+/* OVERLAY */
 body:after{
   content:"";
   position:fixed;
@@ -69,6 +69,7 @@ body:after{
 }
 
 @keyframes floatGold{
+
   from{
     background-position:
       0 0,
@@ -80,9 +81,10 @@ body:after{
       140px 240px,
       190px 280px;
   }
+
 }
 
-/* MAIN WRAP */
+/* WRAP */
 .site-shell{
   position:relative;
   z-index:2;
@@ -100,7 +102,7 @@ body:after{
     0 30px 90px rgba(0,0,0,.72);
 }
 
-/* GOLD BORDER */
+/* GOLD FRAME */
 .gold-frame{
   border-left:2px solid #b56a00;
   border-right:2px solid #b56a00;
@@ -199,16 +201,13 @@ body:after{
 
 /* PROMO */
 .promo-list{
-  padding:0 18px 20px;
+  padding:0;
 }
 
 .promo-card{
-  margin:0 auto 8px;
-
+  margin:0;
   background:#000;
-
-  border-bottom:
-    1px solid rgba(177,103,0,.25);
+  border-bottom:0;
 }
 
 .promo-trigger{
@@ -219,6 +218,7 @@ body:after{
   background:#000;
 
   padding:0;
+  margin:0;
 
   cursor:pointer;
   text-align:left;
@@ -229,13 +229,14 @@ body:after{
   width:100%;
   height:auto;
 
-  border:1px solid #0e0e0e;
+  border:0;
+  margin:0;
+  padding:0;
 
   transition:.2s;
 }
 
 .promo-trigger:hover img{
-  border-color:#b56a00;
   filter:brightness(1.05);
 }
 
@@ -256,7 +257,7 @@ body:after{
 .promo-content{
   display:none;
 
-  padding:18px 10px 28px;
+  padding:18px 16px 28px;
 
   background:#000;
 
@@ -359,7 +360,7 @@ body:after{
   }
 
   .promo-list{
-    padding:0 8px 15px;
+    padding:0;
   }
 
   .promo-content{
