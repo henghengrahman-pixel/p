@@ -90,22 +90,25 @@ body:after{
   z-index:2;
 
   width:760px;
-  max-width:100%;
+  max-width:calc(100% - 28px);
   min-height:100vh;
 
-  margin:0 auto;
+  margin:18px auto;
 
   background:rgba(0,0,0,.88);
 
+  border-radius:18px;
+
+  overflow:hidden;
+
   box-shadow:
-    0 0 0 1px rgba(190,112,0,.45),
+    0 0 0 2px rgba(190,112,0,.45),
     0 30px 90px rgba(0,0,0,.72);
 }
 
 /* GOLD FRAME */
 .gold-frame{
-  border-left:2px solid #b56a00;
-  border-right:2px solid #b56a00;
+  border:2px solid #b56a00;
 }
 
 /* HEADER */
@@ -123,6 +126,7 @@ body:after{
   object-fit:contain;
 }
 
+/* LOGO */
 .logo-img{
   max-width:330px;
   width:70%;
@@ -201,13 +205,18 @@ body:after{
 
 /* PROMO */
 .promo-list{
-  padding:0;
+  padding:14px;
 }
 
 .promo-card{
-  margin:0;
+  margin:0 0 14px;
   background:#000;
-  border-bottom:0;
+  border-radius:12px;
+  overflow:hidden;
+}
+
+.promo-card:last-child{
+  margin-bottom:0;
 }
 
 .promo-trigger{
@@ -331,7 +340,7 @@ body:after{
   color:#ffd36b;
 }
 
-/* BONUS RULES FIX */
+/* BONUS RULES */
 .bonus-rules{
   display:flex;
   flex-direction:column;
@@ -370,7 +379,7 @@ body:after{
 .footer{
   text-align:center;
 
-  padding:16px 10px 24px;
+  padding:18px 10px 28px;
 
   color:#d2b27d;
 
@@ -402,9 +411,14 @@ body:after{
     background-attachment:scroll;
   }
 
+  .site-shell{
+    max-width:calc(100% - 14px);
+    margin:7px auto;
+    border-radius:14px;
+  }
+
   .gold-frame{
-    border-left:1px solid #a55f00;
-    border-right:1px solid #a55f00;
+    border-width:1px;
   }
 
   .ticker{
@@ -422,7 +436,12 @@ body:after{
   }
 
   .promo-list{
-    padding:0;
+    padding:8px;
+  }
+
+  .promo-card{
+    margin-bottom:8px;
+    border-radius:10px;
   }
 
   .promo-content{
