@@ -141,7 +141,7 @@
         warna,
         tabel,
         video,
-        dan link klik pada gambar.
+        dan gambar bisa diklik ke link lain.
 
       </div>
 
@@ -193,58 +193,87 @@ $(document).ready(function(){
 
       ['insert',['link','picture','video']],
 
+      ['custom',['imageLink']],
+
       ['view',['fullscreen','codeview']]
 
-    ]
+    ],
+
+    buttons:{
+
+      imageLink:function(){
+
+        const ui = $.summernote.ui;
+
+        return ui.button({
+
+          contents:'🔗 IMG',
+
+          tooltip:'Tambah Link Pada Gambar',
+
+          click:function(){
+
+            const selectedImg =
+              $('.note-editable img').last();
+
+            if(!selectedImg.length){
+
+              alert('Upload gambar dulu');
+
+              return;
+
+            }
+
+            const currentHref =
+              selectedImg.parent('a').attr('href') || '';
+
+            const url = prompt(
+              'Masukkan link untuk gambar:',
+              currentHref
+            );
+
+            if(!url) return;
+
+            const finalUrl =
+              url.startsWith('http')
+                ? url
+                : 'https://' + url;
+
+            if(selectedImg.parent('a').length){
+
+              selectedImg
+                .parent('a')
+                .attr('href',finalUrl)
+                .attr('target','_blank');
+
+            }else{
+
+              selectedImg.wrap(
+                '<a href="' +
+                finalUrl +
+                '" target="_blank"></a>'
+              );
+
+            }
+
+            $('#promoEditor').summernote(
+              'code',
+              $('.note-editable').html()
+            );
+
+            alert('Link gambar berhasil dipasang');
+
+          }
+
+        }).render();
+
+      }
+
+    }
 
   });
 
 });
-
-/* DOUBLE CLICK GAMBAR => TAMBAH LINK */
-
-$(document).on('dblclick','.note-editable img',function(){
-
-  const img = $(this);
-
-  const currentLink =
-    img.parent('a').attr('href') || '';
-
-  const url = prompt(
-    'Masukkan link untuk gambar:',
-    currentLink
-  );
-
-  if(!url) return;
-
-  if(img.parent('a').length){
-
-    img.parent('a').attr('href',url);
-
-  }else{
-
-    img.wrap(
-      '<a href="'+url+'" target="_blank"></a>'
-    );
-
-  }
-
-});
-
-/* AUTO TARGET BLANK */
-
-$(document).on(
-  'summernote.change',
-  '#promoEditor',
-  function(){
-
-    $('.note-editable a').attr(
-      'target',
-      '_blank'
-    );
-
-  }
-);
 
 </script>
 
