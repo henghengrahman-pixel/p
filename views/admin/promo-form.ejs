@@ -145,6 +145,11 @@
         gambar dari link,
         dan gambar bisa diklik ke link lain.
 
+        <br><br>
+
+        CARA PASANG LINK DI GAMBAR:
+        klik 1x gambar → muncul popup link.
+
       </div>
 
       <button class="save-btn full">
@@ -217,7 +222,7 @@ $(document).ready(function(){
 
 });
 
-/* UPLOAD MANUAL IMAGE */
+/* UPLOAD IMAGE MANUAL */
 
 function uploadImage(file){
 
@@ -255,7 +260,7 @@ function uploadImage(file){
 
 }
 
-/* CLICK IMAGE => ADD / EDIT LINK */
+/* KLIK GAMBAR => PASANG LINK */
 
 $(document).on(
 
@@ -263,9 +268,18 @@ $(document).on(
 
   '.note-editable img',
 
-  function(){
+  function(e){
+
+    e.preventDefault();
+
+    e.stopPropagation();
 
     const img = $(this);
+
+    $('.note-editable img')
+      .removeClass('selected-editor-image');
+
+    img.addClass('selected-editor-image');
 
     const currentHref =
 
@@ -279,7 +293,11 @@ $(document).on(
 
     );
 
-    if(url === null) return;
+    if(url === null){
+
+      return;
+
+    }
 
     /* HAPUS LINK */
 
@@ -291,13 +309,7 @@ $(document).on(
 
       }
 
-      $('#promoEditor').summernote(
-
-        'code',
-
-        $('.note-editable').html()
-
-      );
+      saveEditorContent();
 
       return;
 
@@ -335,19 +347,27 @@ $(document).on(
 
     }
 
-    $('#promoEditor').summernote(
-
-      'code',
-
-      $('.note-editable').html()
-
-    );
+    saveEditorContent();
 
     alert('Link gambar berhasil dipasang');
 
   }
 
 );
+
+/* SIMPAN HTML */
+
+function saveEditorContent(){
+
+  $('#promoEditor').summernote(
+
+    'code',
+
+    $('.note-editable').html()
+
+  );
+
+}
 
 </script>
 
