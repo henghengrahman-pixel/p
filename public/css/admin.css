@@ -627,3 +627,75 @@ button.danger{
   }
 
 }
+/* SUMMERNOTE FIX */
+
+.note-editor{
+  border:1px solid rgba(255,255,255,.08)!important;
+  border-radius:16px!important;
+  overflow:hidden!important;
+
+  background:#ffffff!important;
+}
+
+.note-toolbar{
+  background:#f5f5f5!important;
+  border-bottom:1px solid #ddd!important;
+}
+
+.note-btn{
+  background:#ffffff!important;
+  border:1px solid #ddd!important;
+  color:#111!important;
+}
+
+.note-btn:hover{
+  background:#ececec!important;
+}
+
+.note-editing-area{
+  background:#ffffff!important;
+}
+
+.note-editable{
+  background:#ffffff!important;
+  color:#111111!important;
+
+  min-height:420px;
+
+  padding:20px!important;
+
+  font-size:15px!important;
+  line-height:1.8!important;
+}
+
+.note-editable p{
+  color:#111111!important;
+}
+
+.note-editable h1,
+.note-editable h2,
+.note-editable h3,
+.note-editable h4,
+.note-editable h5{
+  color:#111111!important;
+}
+
+.note-editable ul,
+.note-editable ol{
+  padding-left:22px!important;
+}
+
+.note-editable img{
+  max-width:100%!important;
+  height:auto!important;
+  border-radius:10px!important;
+}
+
+.note-statusbar{
+  background:#f7f7f7!important;
+  border-top:1px solid #ddd!important;
+}
+
+.note-resizebar{
+  background:#f7f7f7!important;
+}
