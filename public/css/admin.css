@@ -699,3 +699,196 @@ button.danger{
 .note-resizebar{
   background:#f7f7f7!important;
 }
+/* =========================
+   SUMMERNOTE PREMIUM FIX
+========================= */
+
+.note-editor{
+  border:1px solid rgba(255,255,255,.08)!important;
+  border-radius:18px!important;
+  overflow:hidden!important;
+
+  background:#ffffff!important;
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.18)!important;
+}
+
+/* TOOLBAR */
+
+.note-toolbar{
+  background:
+    linear-gradient(
+      180deg,
+      #f7f7f7,
+      #ececec
+    )!important;
+
+  border-bottom:1px solid #dcdcdc!important;
+
+  padding:10px!important;
+}
+
+.note-btn{
+  background:#ffffff!important;
+
+  border:1px solid #d7d7d7!important;
+
+  color:#111!important;
+
+  border-radius:8px!important;
+
+  transition:.18s!important;
+}
+
+.note-btn:hover{
+  background:#efefef!important;
+}
+
+.note-btn-group{
+  margin-right:6px!important;
+}
+
+/* EDIT AREA */
+
+.note-editing-area{
+  background:#ffffff!important;
+}
+
+.note-editable{
+  background:#ffffff!important;
+
+  color:#111111!important;
+
+  min-height:460px!important;
+
+  padding:24px!important;
+
+  font-size:15px!important;
+
+  line-height:1.85!important;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif!important;
+}
+
+/* TEXT */
+
+.note-editable p,
+.note-editable span,
+.note-editable div,
+.note-editable li{
+  color:#111111!important;
+}
+
+.note-editable h1,
+.note-editable h2,
+.note-editable h3,
+.note-editable h4,
+.note-editable h5,
+.note-editable h6{
+  color:#111111!important;
+
+  margin-top:18px!important;
+  margin-bottom:12px!important;
+
+  font-weight:800!important;
+}
+
+/* LIST */
+
+.note-editable ul,
+.note-editable ol{
+  padding-left:24px!important;
+}
+
+/* TABLE */
+
+.note-editable table{
+  width:100%!important;
+  border-collapse:collapse!important;
+}
+
+.note-editable table td,
+.note-editable table th{
+  border:1px solid #dcdcdc!important;
+  padding:10px!important;
+}
+
+/* IMAGE */
+
+.note-editable img{
+  max-width:100%!important;
+
+  height:auto!important;
+
+  border-radius:12px!important;
+
+  cursor:pointer!important;
+
+  transition:.18s!important;
+
+  margin:10px 0!important;
+
+  border:3px solid transparent!important;
+}
+
+.note-editable img:hover{
+  opacity:.95!important;
+}
+
+/* IMAGE SELECTED */
+
+.selected-editor-image{
+  border:3px solid #ffb100!important;
+
+  box-shadow:
+    0 0 0 4px rgba(255,177,0,.18)!important;
+}
+
+/* LINK IMAGE */
+
+.note-editable a{
+  color:#1565ff!important;
+  text-decoration:none!important;
+}
+
+.note-editable a:hover{
+  text-decoration:underline!important;
+}
+
+/* STATUS BAR */
+
+.note-statusbar{
+  background:#f7f7f7!important;
+
+  border-top:1px solid #dddddd!important;
+}
+
+.note-resizebar{
+  background:#f7f7f7!important;
+}
+
+/* FULLSCREEN */
+
+.note-editor.note-frame.fullscreen{
+  z-index:999999!important;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+  .note-editable{
+    padding:16px!important;
+    font-size:14px!important;
+    line-height:1.7!important;
+  }
+
+  .note-toolbar{
+    padding:6px!important;
+  }
+
+}
