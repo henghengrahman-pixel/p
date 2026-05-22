@@ -140,7 +140,8 @@
         bullet,
         warna,
         tabel,
-        dan link.
+        video,
+        dan link klik pada gambar.
 
       </div>
 
@@ -162,37 +163,88 @@
 
 <script>
 
-$('#promoEditor').summernote({
+$(document).ready(function(){
 
-  placeholder:'Isi keterangan promo...',
+  $('#promoEditor').summernote({
 
-  tabsize:2,
+    placeholder:'Isi keterangan promo...',
 
-  height:420,
+    tabsize:2,
 
-  dialogsInBody:true,
+    height:500,
 
-  toolbar:[
+    dialogsInBody:true,
 
-    ['style',['style']],
+    disableResizeEditor:false,
 
-    ['font',['bold','italic','underline','clear']],
+    toolbar:[
 
-    ['fontsize',['fontsize']],
+      ['style',['style']],
 
-    ['color',['color']],
+      ['font',['bold','italic','underline','clear']],
 
-    ['para',['ul','ol','paragraph']],
+      ['fontsize',['fontsize']],
 
-    ['table',['table']],
+      ['color',['color']],
 
-    ['insert',['link','picture','video']],
+      ['para',['ul','ol','paragraph']],
 
-    ['view',['fullscreen','codeview']]
+      ['table',['table']],
 
-  ]
+      ['insert',['link','picture','video']],
+
+      ['view',['fullscreen','codeview']]
+
+    ]
+
+  });
 
 });
+
+/* DOUBLE CLICK GAMBAR => TAMBAH LINK */
+
+$(document).on('dblclick','.note-editable img',function(){
+
+  const img = $(this);
+
+  const currentLink =
+    img.parent('a').attr('href') || '';
+
+  const url = prompt(
+    'Masukkan link untuk gambar:',
+    currentLink
+  );
+
+  if(!url) return;
+
+  if(img.parent('a').length){
+
+    img.parent('a').attr('href',url);
+
+  }else{
+
+    img.wrap(
+      '<a href="'+url+'" target="_blank"></a>'
+    );
+
+  }
+
+});
+
+/* AUTO TARGET BLANK */
+
+$(document).on(
+  'summernote.change',
+  '#promoEditor',
+  function(){
+
+    $('.note-editable a').attr(
+      'target',
+      '_blank'
+    );
+
+  }
+);
 
 </script>
 
