@@ -141,6 +141,8 @@
         warna,
         tabel,
         video,
+        upload manual,
+        gambar dari link,
         dan gambar bisa diklik ke link lain.
 
       </div>
@@ -171,7 +173,7 @@ $(document).ready(function(){
 
     tabsize:2,
 
-    height:500,
+    height:520,
 
     dialogsInBody:true,
 
@@ -193,79 +195,19 @@ $(document).ready(function(){
 
       ['insert',['link','picture','video']],
 
-      ['custom',['imageLink']],
-
       ['view',['fullscreen','codeview']]
 
     ],
 
-    buttons:{
+    callbacks:{
 
-      imageLink:function(){
+      onImageUpload:function(files){
 
-        const ui = $.summernote.ui;
+        for(let i = 0; i < files.length; i++){
 
-        return ui.button({
+          uploadImage(files[i]);
 
-          contents:'🔗 IMG',
-
-          tooltip:'Tambah Link Pada Gambar',
-
-          click:function(){
-
-            const selectedImg =
-              $('.note-editable img').last();
-
-            if(!selectedImg.length){
-
-              alert('Upload gambar dulu');
-
-              return;
-
-            }
-
-            const currentHref =
-              selectedImg.parent('a').attr('href') || '';
-
-            const url = prompt(
-              'Masukkan link untuk gambar:',
-              currentHref
-            );
-
-            if(!url) return;
-
-            const finalUrl =
-              url.startsWith('http')
-                ? url
-                : 'https://' + url;
-
-            if(selectedImg.parent('a').length){
-
-              selectedImg
-                .parent('a')
-                .attr('href',finalUrl)
-                .attr('target','_blank');
-
-            }else{
-
-              selectedImg.wrap(
-                '<a href="' +
-                finalUrl +
-                '" target="_blank"></a>'
-              );
-
-            }
-
-            $('#promoEditor').summernote(
-              'code',
-              $('.note-editable').html()
-            );
-
-            alert('Link gambar berhasil dipasang');
-
-          }
-
-        }).render();
+        }
 
       }
 
@@ -274,6 +216,138 @@ $(document).ready(function(){
   });
 
 });
+
+/* UPLOAD MANUAL IMAGE */
+
+function uploadImage(file){
+
+  const reader = new FileReader();
+
+  reader.onload = function(e){
+
+    $('#promoEditor').summernote(
+
+      'insertImage',
+
+      e.target.result,
+
+      function($image){
+
+        $image.css({
+
+          width:'100%',
+
+          borderRadius:'12px',
+
+          cursor:'pointer',
+
+          margin:'10px 0'
+
+        });
+
+      }
+
+    );
+
+  };
+
+  reader.readAsDataURL(file);
+
+}
+
+/* CLICK IMAGE => ADD / EDIT LINK */
+
+$(document).on(
+
+  'click',
+
+  '.note-editable img',
+
+  function(){
+
+    const img = $(this);
+
+    const currentHref =
+
+      img.parent('a').attr('href') || '';
+
+    const url = prompt(
+
+      'Masukkan link untuk gambar:',
+
+      currentHref
+
+    );
+
+    if(url === null) return;
+
+    /* HAPUS LINK */
+
+    if(url.trim() === ''){
+
+      if(img.parent('a').length){
+
+        img.unwrap();
+
+      }
+
+      $('#promoEditor').summernote(
+
+        'code',
+
+        $('.note-editable').html()
+
+      );
+
+      return;
+
+    }
+
+    const finalUrl =
+
+      url.startsWith('http')
+
+        ? url
+
+        : 'https://' + url;
+
+    /* UPDATE LINK */
+
+    if(img.parent('a').length){
+
+      img.parent('a')
+
+        .attr('href',finalUrl)
+
+        .attr('target','_blank');
+
+    }else{
+
+      img.wrap(
+
+        '<a href="' +
+
+        finalUrl +
+
+        '" target="_blank"></a>'
+
+      );
+
+    }
+
+    $('#promoEditor').summernote(
+
+      'code',
+
+      $('.note-editable').html()
+
+    );
+
+    alert('Link gambar berhasil dipasang');
+
+  }
+
+);
 
 </script>
 
