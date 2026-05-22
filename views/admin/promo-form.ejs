@@ -1,5 +1,10 @@
 <%- include('../partials/admin-head', { title }) %>
 
+<link
+  href="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.css"
+  rel="stylesheet"
+/>
+
 <div class="admin-shell">
 
   <%- include('../partials/admin-nav') %>
@@ -35,6 +40,7 @@
     >
 
       <label>
+
         Judul Promo
 
         <input
@@ -42,9 +48,11 @@
           value="<%= promo ? promo.title : '' %>"
           required
         >
+
       </label>
 
       <label>
+
         Urutan
 
         <input
@@ -52,6 +60,7 @@
           type="number"
           value="<%= promo ? promo.sort : 1 %>"
         >
+
       </label>
 
       <label class="full">
@@ -119,19 +128,18 @@
         <textarea
           id="promoEditor"
           name="description"
-          rows="18"
         ><%= promo ? promo.description : '' %></textarea>
 
       </label>
 
       <div class="editor-help full">
 
-        Editor mendukung:
+        Bisa tambah:
         gambar,
-        tabel,
         heading,
         bullet,
-        warna teks,
+        warna,
+        tabel,
         dan link.
 
       </div>
@@ -148,85 +156,41 @@
 
 </div>
 
-<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.js"></script>
 
 <script>
 
-tinymce.init({
+$('#promoEditor').summernote({
 
-  selector:'#promoEditor',
+  placeholder:'Isi keterangan promo...',
 
-  height:520,
+  tabsize:2,
 
-  menubar:false,
+  height:420,
 
-  branding:false,
+  dialogsInBody:true,
 
-  promotion:false,
+  toolbar:[
 
-  plugins:[
-    'lists',
-    'link',
-    'image',
-    'table',
-    'code',
-    'fullscreen',
-    'media',
-    'autolink',
-    'wordcount'
-  ],
+    ['style',['style']],
 
-  toolbar:
-    'undo redo | ' +
-    'blocks fontsize | ' +
-    'bold italic underline strikethrough | ' +
-    'alignleft aligncenter alignright alignjustify | ' +
-    'bullist numlist outdent indent | ' +
-    'image media link table | ' +
-    'forecolor backcolor | ' +
-    'removeformat code fullscreen',
+    ['font',['bold','italic','underline','clear']],
 
-  fontsize_formats:
-    '12px 14px 16px 18px 20px 24px 28px 32px',
+    ['fontsize',['fontsize']],
 
-  content_style:`
+    ['color',['color']],
 
-    body{
-      font-family:Arial,sans-serif;
-      font-size:15px;
-      line-height:1.8;
-      padding:16px;
-      background:#ffffff;
-      color:#111111;
-    }
+    ['para',['ul','ol','paragraph']],
 
-    p{
-      margin:0 0 14px;
-    }
+    ['table',['table']],
 
-    img{
-      max-width:100%;
-      height:auto;
-      border-radius:10px;
-    }
+    ['insert',['link','picture','video']],
 
-    table{
-      width:100%;
-      border-collapse:collapse;
-      margin-top:14px;
-    }
+    ['view',['fullscreen','codeview']]
 
-    table td,
-    table th{
-      border:1px solid #ddd;
-      padding:10px;
-    }
-
-    h1,h2,h3{
-      margin-top:18px;
-    }
-
-  `
+  ]
 
 });
 
